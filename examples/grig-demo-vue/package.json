@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "grig": "^0.1.0",
+    "grig": "^0.0.3",
     "vue": "^3.3.8"
   },
   "devDependencies": {

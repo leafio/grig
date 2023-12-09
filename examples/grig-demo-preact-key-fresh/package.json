@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "preact": "^10.19.1",
-    "grig": "^0.1.0"
+    "grig": "^0.0.3"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.6.0",

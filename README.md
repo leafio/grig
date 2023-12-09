@@ -1,11 +1,7 @@
 **grig**：轻量易用的 i18n 库，含 TS 智能提示。  
  **grig**: a lightweight and easy-to-use i18n library, with TS **smart prompts**
-
->
-
-<!-- ![截图](https://raw.githubusercontent.com/leafio/grig/main/snap.png "snap.png") -->
-
-![截图](./snap.png "snap.png")
+![截图](https://raw.githubusercontent.com/leafio/grig/main/snap.png "snap.png")
+<!-- ![截图](./snap.png "snap.png") -->
 
 - [直接使用 Use as a formatter](#直接使用-use-as-a-formatter)
 - [通用用法 General Instance Usage](#通用用法-general-instance-usage)
