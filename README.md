@@ -1,5 +1,3 @@
-### grig
-
 **grig**：轻量易用的 i18n 库，含 TS 智能提示。  
  **grig**: a lightweight and easy-to-use i18n library, with TS **smart prompts**
 
@@ -19,9 +17,9 @@
 - [React](#react)
 - [安装 Installation](#安装-installation)
 - [示例代码 Demos](#代码示例-demos)
-  - [react](#grig-demo-react)
-  - [vue](#grig-demo-vue)
-  - [general](#grig-demo-preact-key-fresh)
+  - react
+  - vue
+  - general
 
 #### 直接使用 Use as a formatter
 
@@ -148,28 +146,16 @@ import { createGrigVue } from "grig/vue";
 #### React
 
 ```typescript
-import { GrigContextWrapper, useGrigContext } from "grig/react";
+import { GrigContextWrapper, useGrigContext ,createGrig } from "grig/react";
+```
+
+#### 代码示例 Demos
+```bash
+npx degit https://github.com/leafio/grig/examples grig-examples
 ```
 
 #### 安装 Installation
 
 ```bash
 npm install grig
-```
-
-#### 代码示例 Demos
-
-##### grig-demo-react
-
-```bash
-npx degit https://github.com/leafio/grig/examples/grig-demo-react
-```
-
-##### grig-demo-vue
-```bash
-npx degit https://github.com/leafio/grig/examples/grig-demo-vue
-```
-##### grig-demo-preact-key-fresh
-```bash
-npx degit https://github.com/leafio/grig/examples/grig-demo-preact-key-fresh
 ```
