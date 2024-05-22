@@ -1,4 +1,4 @@
-import { createGrigSvetle } from "grig/svelte";
+import { createGrigSvelte } from "grig/svelte";
 const zh_global = {
     g_welcome: "全局_欢迎",
 } as const
@@ -12,7 +12,7 @@ const global_messages = {
 export const {
     tMessages,
     lang
-} = createGrigSvetle({ lang: "zh", fallbackLang: "en" }, global_messages);
+} = createGrigSvelte({ lang: "zh", fallbackLang: "en" }, global_messages);
 
 
 

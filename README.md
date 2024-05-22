@@ -187,12 +187,12 @@ const t = tMessages({
 
 ```typescript
 //./lang/init
-import { createGrigVue } from "grig/svelte";
+import { createGrigSvelte } from "grig/svelte";
 const zh_global = { g_welcome: "全局_欢迎" } as const;
 const en_global = { g_welcome: "Global Welcome" } as const;
 const global_messages = { zh: zh_global, en: en_global };
 export const { tMessages, lang} = 
-createGrigSvetle({ lang: "zh", fallbackLang: "en" }, global_messages);
+createGrigSvelte({ lang: "zh", fallbackLang: "en" }, global_messages);
 
 ```
 
@@ -245,7 +245,7 @@ createGrigSvetle({ lang: "zh", fallbackLang: "en" }, global_messages);
 
 ```typescript
 //./lang/init
-import { createGrigVue } from "grig/solid";
+import { createGrigSolid } from "grig/solid";
 const zh_global = { g_welcome: "全局_欢迎" } as const;
 const en_global = { g_welcome: "Global Welcome" } as const;
 const global_messages = { zh: zh_global, en: en_global };
@@ -593,12 +593,12 @@ const t = tMessages({
 
 ```typescript
 //./lang/init
-import { createGrigVue } from "grig/svelte";
+import { createGrigSvelte } from "grig/svelte";
 const zh_global = { g_welcome: "全局_欢迎" } as const;
 const en_global = { g_welcome: "Global Welcome" } as const;
 const global_messages = { zh: zh_global, en: en_global };
 export const { tMessages, lang} = 
-createGrigSvetle({ lang: "zh", fallbackLang: "en" }, global_messages);
+createGrigSvelte({ lang: "zh", fallbackLang: "en" }, global_messages);
 
 ```
 
@@ -651,7 +651,7 @@ createGrigSvetle({ lang: "zh", fallbackLang: "en" }, global_messages);
 
 ```typescript
 //./lang/init
-import { createGrigVue } from "grig/solid";
+import { createGrigSolid } from "grig/solid";
 const zh_global = { g_welcome: "全局_欢迎" } as const;
 const en_global = { g_welcome: "Global Welcome" } as const;
 const global_messages = { zh: zh_global, en: en_global };

@@ -1,7 +1,7 @@
 /// <reference types="svelte" />
 import { type AllPaths, type GetParams, type GetValue } from "./common";
 import { type Readable } from "svelte/store";
-export declare const createGrigSvetle: <N>(config: {
+export declare const createGrigSvelte: <N>(config: {
     lang: string;
     fallbackLang: string;
 }, globalMessages?: Record<string, N> | undefined) => {

@@ -8,7 +8,7 @@ import {
 } from "./common";
 import { derived, writable, type Readable } from "svelte/store";
 
-export const createGrigSvetle = <N>(
+export const createGrigSvelte = <N>(
   config: {
     lang: string;
     fallbackLang: string;
