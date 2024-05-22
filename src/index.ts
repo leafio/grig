@@ -2,17 +2,14 @@ import {
     AllPaths,
     GetParams,
     GetValue,
-    flatTreeKey,
-    formatString,
+    combineMessages,
+    flatMessages,
+    formatObjKey,
 } from "./common";
 
 export const grig = <const T extends Record<string, any>>(messages: T) => {
     return ((id: string, ...obj: any) => {
-        if (!messages) return "";
-        const str = messages[id] || id;
-        if (!obj.length) return str;
-        if (typeof str === "function") return str(...obj);
-        return formatString(str, obj[0]);
+        return formatObjKey(messages, id, ...obj);
     }) as <ID extends AllPaths<T>>(
         id: ID,
         ...arg: GetParams<GetValue<T, ID>>
@@ -30,17 +27,7 @@ export const createGrig = <N>(
     let _fallback_lang = "";
     const _messages: Record<string, any> = {};
     const addMessages = (messages?: Record<string, any>) => {
-        if (messages) {
-            //第一层语言保留，
-            Object.keys(messages).forEach((key) => {
-                //后面的拍平合并
-                _messages[key] = Object.assign(
-                    {},
-                    _messages[key] ?? {},
-                    flatTreeKey(messages[key])
-                );
-            });
-        }
+        combineMessages(_messages, messages);
     };
     _lang = config.lang;
     _fallback_lang = config.fallbackLang;
@@ -73,15 +60,17 @@ export const createGrig = <N>(
         });
     };
     const tMessages = <P>(messages?: Record<string, P>) => {
-        addMessages(messages);
+        const flat_messages = flatMessages(messages);
+        // console.log('flat_messages',flat_messages)
         return ((id: string, ...obj: any) => {
-            if (!_messages || !_messages[_lang] || !_messages[_fallback_lang])
-                return "";
-            const str =
-                _messages[_lang][id] || _messages[_fallback_lang][id] || id;
-            if (!obj.length) return str;
-            if (typeof str === "function") return str(...obj);
-            return formatString(str, obj[0]);
+            const lang_messages = {
+                ..._messages[_fallback_lang],
+                ...flat_messages[_fallback_lang],
+                ..._messages[_lang],               
+                ...flat_messages[_lang],
+            };
+            // console.log('lang-messages',lang_messages)
+            return formatObjKey(lang_messages, id, ...obj);
         }) as <ID extends AllPaths<P> | AllPaths<N>>(
             id: ID,
             ...arg: GetParams<GetValue<P, ID> | GetValue<N, ID>>
@@ -105,33 +94,43 @@ export const createGrig = <N>(
 //     },
 //     welcome: "欢迎来到{city}！",
 //     apple: (count: number) => {
-//         if (count === 1) return `I have an apple`
-//         return `I have ${count} apples`
+//         if (count === 1) return `I have an apple`;
+//         return `I have ${count} apples`;
+//     },
+//     'user.name':'yes {age}',
+//     user:{
+//         name:'{name}'
 //     }
-// } as const;
-// // const t = grig(message);
-// const myGrig = createGrig({
-//     lang: 'zh',
-//     fallbackLang: 'zh',
+// }  as const
+// const t = grig(message);
+// t('form.status')
+// type R=GetValue<typeof message, 'user.name'>
 
-// }, {
-//     zh: message, en: {
-//         name: "姓名",
-//         form: {
-//             label: "标签",
-//             status: "状态",
+// const myGrig = createGrig(
+//     {
+//         lang: "zh",
+//         fallbackLang: "zh",
+//     },
+//     {
+//         zh: message,
+//         en: {
+//             name: "姓名",
+//             form: {
+//                 label: "标签",
+//                 status: "状态",
+//             },
+//             welcome: "欢迎来到{city}！",
+//             apple: (count: number) => {
+//                 if (count === 1) return `I have an apple`;
+//                 return `I have ${count} apples`;
+//             },
 //         },
-//         welcome: "欢迎来到{city}！",
-//         apple: (count: number) => {
-//             if (count === 1) return `I have an apple`
-//             return `I have ${count} apples`
-//         }
-//     }
-// })
-// const t = myGrig.tMessages()
+//     } as const
+// );
+// const t = myGrig.tMessages();
 // console.log(t("name")); // 姓名
 // console.log(t("form.status")); // 状态
-// console.log(t("welcome", { city: "上海" })); // 欢迎来到上海！
+// console.log(t("welcome", { city: 1 })); // 欢迎来到上海！
 
-// console.log(t('apple',1))
-// type test = ((name: string) => string) | ((name: string) => string)
+// console.log(t("apple", 1));
+// type test = ((name: string) => string) | ((name: string) => string);
